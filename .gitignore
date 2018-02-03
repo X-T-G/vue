@@ -1,0 +1,12 @@
+*.log
+
+node_modules
+
+.idea
+
+webpack-assets.json
+
+dist
+
+.vscode
+bundle.js
