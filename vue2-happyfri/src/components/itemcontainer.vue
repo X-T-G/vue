@@ -13,7 +13,7 @@
     			<div class="item_list_container" v-if="itemDetail.length > 0">
     				<header class="item_title">{{itemDetail[itemNum-1].topic_name}}</header>
     				<ul>
-    					<li  v-for="(item, index) in itemDetail[itemNum-1].topic_answer" @click="choosed(index, item.topic_answer_id)" class="item_list">
+    					<li  v-for="(item, index) in itemDetail[itemNum-1].topic_answer" @click="choosed(index, item.topic_answer_id)" v-bind:key="index" class="item_list">
     						<span class="option_style" v-bind:class="{'has_choosed':choosedNum==index}">{{chooseType(index)}}</span>
     						<span class="option_detail">{{item.answer_name}}</span>
     					</li>
