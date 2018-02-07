@@ -25,67 +25,72 @@
     	</div>
   	</section>
 </template>
+
 <script>
-	export default {
-		name: 'itemcontainer',
-		data () {
-			return  {
-				itemId: null,
-				chooseNum: null,
-				chooseId: null
-			}
-		},
-		props: ['fatherComponent'],
-		computed: mapState([
-			'itemNum',
-			'level',
-			'itemDetail',
-			'timer',
-		]),
-		methods: {
-			...mapActions([
-				'addNum','initializeData',
-			]),
-			nextItem(){
-				if (this.choosedNum !== null) {
-					this.choosedNum = null;
-					//保存答案, 题目索引加一，跳到下一题
-					this.addNum(this.choosedId)
-				}else{
-					alert('您还没有选择答案哦')
-				}
-			},
-			chooseType: type => {
-				switch(type){
-					case 0: return 'A';
-					case 1: return 'B';
-					case 2: return 'C';
-					case 3: return 'D';
-				}
-			},
-			//选中的答案信息
-			choosed(type,id){
-				this.choosedNum = type;
-				this.choosedId = id;
-			},
-			//到达最后一题，交卷，请空定时器，跳转分数页面
-			submitAnswer(){
-				if (this.choosedNum !== null) {
-					this.addNum(this.choosedId)
-					clearInterval(this.timer)
-					this.$router.push('score')
-				}else{
-					alert('您还没有选择答案哦')
-				}
-			},
-		},
-		created(){
-			//初始化信息
-			this.initializeData();
-			document.body.style.backgroundImage = 'url(./static/img/1-1.jpg)';
+import { mapState, mapActions } from 'vuex'
+export default {
+	name: 'itemcontainer',
+	data() {
+		return {
+			itemId: null, //题目ID
+			choosedNum: null, //选中答案索引
+			choosedId:null //选中答案id
 		}
+	},
+  	props:['fatherComponent'],
+  	computed: mapState([
+	  	'itemNum', //第几题
+  		'level', //第几周
+  		'itemDetail', //题目详情this.choose
+  		'timer', //计时器
+	]),
+  	methods: {
+  		...mapActions([
+  			'addNum', 'initializeData',
+  		]),
+  		//点击下一题
+  		nextItem(){
+  			if (this.choosedNum !== null) {
+	  			this.choosedNum = null;
+	  			//保存答案, 题目索引加一，跳到下一题
+	  			this.addNum(this.choosedId)
+  			}else{
+  				alert('您还没有选择答案哦')
+  			}
+  		},
+  		//索引0-3对应答案A-B
+	  	chooseType: type => {
+	  		switch(type){
+	  			case 0: return 'A';
+	  			case 1: return 'B';
+	  			case 2: return 'C';
+	  			case 3: return 'D';
+	  		}
+	  	},
+	  	//选中的答案信息
+	  	choosed(type,id){
+	  		this.choosedNum = type;
+	  		this.choosedId = id;
+	  	},
+	  	//到达最后一题，交卷，请空定时器，跳转分数页面
+	  	submitAnswer(){
+	  		if (this.choosedNum !== null) {
+	  			this.addNum(this.choosedId)
+	  			clearInterval(this.timer)
+	  			this.$router.push('score')
+  			}else{
+  				alert('您还没有选择答案哦')
+  			}
+	  	},
+	},
+	created(){
+		//初始化信息
+		this.initializeData();
+		document.body.style.backgroundImage = 'url(./static/img/1-1.jpg)';
 	}
+}
 </script>
+
 <style lang="less">
 	.top_tips{
 		position: absolute;
