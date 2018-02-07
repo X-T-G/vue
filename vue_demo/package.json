@@ -1,7 +1,7 @@
 {
-  "name": "happyfri",
+  "name": "vue_demo",
   "version": "1.0.2",
-  "description": "vue2-happyfri",
+  "description": "vue_demo",
   "author": "cangdu <1264889788@qq.com>",
   "private": true,
   "scripts": {
