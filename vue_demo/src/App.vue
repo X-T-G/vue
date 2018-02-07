@@ -1,13 +1,17 @@
+
 <template>
   <div id="app">
     <img src="./assets/logo.png">
-    <router-view/>
+    <!-- <router-view/> -->
+    <!-- <firstcomponents></firstcomponents> -->
   </div>
 </template>
 
 <script>
+// import firstcomponents from './component/firstcomponents.vue';
 export default {
-  name: 'App'
+  name: 'App',
+  // components: { firstcomponents }
 }
 </script>
 
