@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<title>最简单的 Store</title>
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+	<script src="https://unpkg.com/vuex"></script>
+</head>
+<body>
+	<div id="app">
+	  <p>{{ count }}</p>
+	  <p>
+	    <button @click="increment">+</button>
+	    <button @click="decrement">-</button>
+	  </p>
+	</div>
+	<script>
+		// 简单版本——不适用vuex
+		// var vm = new Vue({
+		//   el: '#app',
+		//   data: {
+		//   	count: 0
+		//   },
+		//   methods: {
+		//     increment () {
+		//       	vm.count ++
+		//     },
+		//     decrement () {
+		//     	vm.count --
+		//     }
+		//   }
+		// })
+		// 修改后的版本 vueX
+		const store = new Vuex.Store({
+		  state: {
+		    count: 0
+		  },
+		  mutations: {
+		  	increment: state => state.count++,
+		    decrement: state => state.count--
+		  }
+		})
+
+		new Vue({
+		  el: '#app',
+		  computed: {
+		    count () {
+			    return store.state.count
+		    }
+		  },
+		  methods: {
+		    increment () {
+		        store.commit('increment')
+		    },
+		    decrement () {
+		    	store.commit('decrement')
+		    }
+		  }
+		})
+	</script>
+	
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<title>命名视图嵌套</title>
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+	<div id="app">
+	  <h1>Nested Named Views</h1>
+	  <router-view></router-view>
+	</div>
+	<script>
+		const UserSettingsNav = {
+			template: `
+				<div class="us__nav">
+				  <router-link to="/settings/emails">emails</router-link>
+				  <br>
+				  <router-link to="/settings/profile">profile</router-link>
+				</div>
+			`
+		}
+		const UserSettings = {
+			template: `
+				<div class="us">
+				  <h2>User Settings</h2>
+				  <UserSettingsNav/>
+				  <router-view class ="us__content"/>
+				  <router-view name="helper" class="us__content us__content--helper"/>
+				</div>
+			`,
+			components: { UserSettingsNav }
+		}
+
+		const UserEmailsSubscriptions = {
+			template: `
+				<div>
+					<h3>Email Subscriptions</h3>
+				</div>
+		  	`
+		}
+
+		const UserProfile = {
+			template: `
+				<div>
+					<h3>Edit your profile</h3>
+				</div>
+		  	`
+		}
+
+		const UserProfilePreview = {
+			template: `
+				<div>
+					<h3>Preview of your profile</h3>
+				</div>
+		  	`
+		}
+
+		const router = new VueRouter({
+		  routes: [
+		    { path: '/settings',
+		      // You could also have named views at tho top
+		      component: UserSettings,
+		      children: [{
+		      	path: 'emails',
+		        component: UserEmailsSubscriptions
+		      }, {
+		      	path: 'profile',
+		        components: {
+		        	default: UserProfile,
+		          helper: UserProfilePreview
+		        }
+		      }]
+		    }
+		  ]
+		})
+
+		// 除了使用 <router-link> 创建 a 标签来定义导航链接，我们还可以借助 router 的实例方法，通过编写代码来实现。
+
+		// router.push(location, onComplete?, onAbort?)
+		// 注意：在 Vue 实例内部，你可以通过 $router 访问路由实例。因此你可以调用 this.$router.push。
+
+		// 想要导航到不同的 URL，则使用 router.push 方法。这个方法会向 history 栈添加一个新的记录，所以，当用户点击浏览器后退按钮时，则回到之前的 URL。
+
+		// 当你点击 <router-link> 时，这个方法会在内部调用，所以说，点击 <router-link :to="..."> 等同于调用 router.push(...)。
+		router.push('/settings/emails')
+
+		new Vue({
+			router,
+		  	el: '#app'
+		})
+	</script>
+	
+</body>
+</html>
