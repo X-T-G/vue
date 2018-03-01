@@ -19,10 +19,10 @@
 				<ul>
 					<router-link to="/singlechat" tag="li" v-for="item in dialogueList" @click.native="refreshInfor(item)">
 						<div class="imgwipe">
-							<i class="redicon_num" v-if="newinfor">
+							<!-- <i class="redicon_num">
 							1
-							</i>
-							<i class="redicon" v-if="newtext"></i>
+							</i> -->
+							<i class="redicon"></i>
 							<div class="imgstyle">
 								<img :src="item.headurl" alt="">
 							</div>
@@ -44,8 +44,8 @@
 				<ul>
 					<router-link to="/groupchat" tag="li">
 						<div class="imgwipe">
-							<i class="redicon_num" v-if="newinfor">1</i>
-							<i class="redicon" v-if="newtext"></i>
+							<!-- <i class="redicon_num">1</i> -->
+							<i class="redicon"></i>
 							<div class="imgstyle imgstyletwo">
 								<img :src="item.avatar" alt="" v-for="item in groupHead">
 							</div>
