@@ -17,23 +17,23 @@
 			<!-- 对话列表 -->
 			<section class="conversation">
 				<ul>
-					<router-link to="/singlechat" tag="li" v-for="item in dialogueList" @click.native="refreshInfor(item)">
+					<router-link to="/singlechat" tag="li"  @click.native="refreshInfor(item)">
 						<div class="imgwipe">
 							<!-- <i class="redicon_num">
 							1
 							</i> -->
 							<i class="redicon"></i>
 							<div class="imgstyle">
-								<img :src="item.headurl" alt="">
+								<img :src="item.avatar" alt="" v-for="item in groupHead">
 							</div>
 						</div>
 						<div class="infordetail">
 							<div class="infordetail_top clear">
-								<span class="left ellipsis">{{item.remarks ? item.remarks : item.petname}}</span>
+								<span class="left ellipsis">群聊</span>
 								<span class="right">12:07</span>
 							</div>
 							<div class="infordetail_bot ellipsis">
-								{{item.newmeassage}}
+								地点
 							</div>
 						</div> 
 					</router-link>
@@ -230,7 +230,12 @@
 						padding:0.3413333333rem 0.5973333333rem;
 						box-sizing:border-box;
 						border-bottom:1px solid #e0e0e0;
+						display: flex;
+						-webkit-box-pack: start;
+						justify-content: flex-start;
 						.imgwipe{
+							width: 2.09067rem;
+    						height: 2.09067rem;
 							position: relative;
 							margin-right:0.512rem;
 							.redicon_num{
@@ -278,12 +283,18 @@
 								padding-bottom:0.2133333333rem;
 								span:nth-of-type(1){
 									width:8.7466666667rem;
+									font-size: 0.59733rem;
+    								color: #38373c;
 								}
 								span:nth-of-type(2){
+									font-size: 0.42667rem;
+    								color: #b2b6b9;
 								}
 							}
 							.infordetail_bot{
 								width:9.5573333333rem;
+								font-size: 0.512rem;
+    							color: #9e9e9e;
 							}
 
 						}
