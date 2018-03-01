@@ -94,16 +94,16 @@
 	import headTop from '../../components/header/header'
 	import footGuide from '../../components/footer/footer'
 	export default {
-	name: 'carousel',
-	data () {
-		return {
-		msg: 'Welcome to Your Vue.js App'
-		}
-	},
-	components:{
-		headTop,
-		footGuide
-	},
+		name: 'dislog',
+		data () {
+			return {
+				msg: ''
+			}
+		},
+		components:{
+			headTop,
+			footGuide
+		},
 	}
 </script>
 
