@@ -9,9 +9,15 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
-    {path: '/', name: 'dialog', component: dialog},
-    {path: '/dialog', name: 'dialog', component: dialog},
-    {path: '/addressbook', name: 'addressbook', component: addressbook}
+    {path: '/', component: dialog,
+    children: [
+      { path: 'dialog', component: dialog },
+      { path: 'addressbook', component: addressbook }
+    ]
+  }
+
+    // {path: '/dialog', name: 'dialog', component: dialog},
+    // {path: '/addressbook', name: 'addressbook', component: addressbook}
     // {path: '/find', name: 'find', component: find},
     // {path: '/me', name: 'me', component: me}
   ]

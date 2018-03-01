@@ -94,7 +94,7 @@
 	import headTop from '../../components/header/header'
 	import footGuide from '../../components/footer/footer'
 	export default {
-		name: 'dislog',
+		name: 'dialog',
 		data () {
 			return {
 				msg: ''

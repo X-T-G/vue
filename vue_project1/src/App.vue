@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <router-view/>
+	<router-view/>
   </div>
 </template>
 <style>
@@ -17,9 +17,9 @@
 		font-family: Arial,'Hiragino Sans GB',Microsoft Yahei,Helvetica Neue,Helvetica,sans-serif !important;
 		-webkit-tap-highlight-color:transparent;
 		-webkit-font-smoothing: antialiased;
-		&:focus {
+		/* &:focus {
 			outline: none;
-		}
+		} */
 	}
 
 	input[type="button"], input[type="submit"], input[type="search"], input[type="reset"] {

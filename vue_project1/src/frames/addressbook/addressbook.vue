@@ -1,8 +1,8 @@
 <template>
-	<section>
+	<section class="">
 		<head-top logo-part="true" search-part="true" add="true"></head-top>
 		<!-- 联系人列表 -->
-		<section class="contacts" ref="contactList">
+		<section class="contacts">
 			<div class="contacts_top">
 				<ul>
 					<router-link to="" tag="li" class="contacts_li">
@@ -49,7 +49,7 @@
 			</div>
 			<div class="contacts_bottom">
 				<ul class="contacts_bottom_ul" ref="addlist">
-					<li v-for="(value, key, index) in manageaddress" :key="key" class="addlistLi" >
+					<!-- <li v-for="(value, key, index) in manageaddress" :key="key" class="addlistLi" >
 						<h1>{{key}}</h1>
 						<ul>
 							<router-link to="/addressbook/details" tag="li" v-for="(item, index) in value" @click.native='detailMessage(item)'>
@@ -61,7 +61,7 @@
 								</div>
 							</router-link>
 						</ul>
-					</li>
+					</li> -->
 				</ul>
 				<section class="list_guide">
 					<dl>
