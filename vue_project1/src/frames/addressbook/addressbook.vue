@@ -48,8 +48,8 @@
 				</ul>
 			</div>
 			<div class="contacts_bottom">
-				<ul class="contacts_bottom_ul" ref="addlist">
-					<!-- <li v-for="(value, key, index) in manageaddress" :key="key" class="addlistLi" >
+				<ul class="contacts_bottom_ul">
+					<li v-for="(value, key, index) in manageaddress" :key="key" class="addlistLi" >
 						<h1>{{key}}</h1>
 						<ul>
 							<router-link to="/addressbook/details" tag="li" v-for="(item, index) in value" @click.native='detailMessage(item)'>
@@ -61,7 +61,7 @@
 								</div>
 							</router-link>
 						</ul>
-					</li> -->
+					</li>
 				</ul>
 				<section class="list_guide">
 					<dl>
@@ -82,99 +82,99 @@
 <script>
 	import headTop from '../../components/header/header'
     import footGuide from '../../components/footer/footer'
-    export default {
-		name: 'addressbook',
-		data () {
-			return {
-			    msg: ''
-			}
-		},
-		components:{
-			headTop,
-			footGuide
-		},
-	}
-	// import {contactList} from 'src/service/getData'
-	// import {animate} from 'src/config/mUtils.js'
-	// import {mapMutations} from 'vuex'
-	// export default{
-	// 	data(){
-	// 		return{
-	// 			contactList:{},		//所有通讯录列表
-	// 			peoplenum:null,		//通讯录人数
+    // export default {
+	// 	name: 'addressbook',
+	// 	data () {
+	// 		return {
+	// 		    msg: ''
 	// 		}
-	// 	},
-	// 	created(){
-			
-	// 	},
-	// 	beforeMount(){
-			
-			
-	// 	},
-	// 	mounted(){
-	// 		contactList().then((res) => {
-	// 			this.contactList=res;
-				
-				
-
-	// 		})
 	// 	},
 	// 	components:{
 	// 		headTop,
 	// 		footGuide
 	// 	},
-	// 	computed:{
+	// }
+	// import {contactList} from 'src/service/getData'
+	// import {animate} from 'src/config/mUtils.js'
+	// import {mapMutations} from 'vuex'
+	export default{
+		name: 'addressbook',
+		data(){
+			return{
+				contactList:{},		//所有通讯录列表
+				peoplenum:null,		//通讯录人数
+			}
+		},
+		// created(){
+			
+		// },
+		// beforeMount(){
+			
+			
+		// },
+		// mounted(){
+		// 	contactList().then((res) => {
+		// 		this.contactList=res;
+		// 		console.log(res)
+				
 
-	// 		manageaddress(){
-	// 			let addresslist={};
-	// 			for(let i=65; i <= 90; i++){
-	// 				if(this.contactList[String.fromCharCode(i)]){
-	// 					if((this.contactList[String.fromCharCode(i)].length)>0){
-	// 						addresslist[String.fromCharCode(i)]=this.contactList[String.fromCharCode(i)];
-	// 						this.peoplenum += Number(this.contactList[String.fromCharCode(i)].length)
-	// 					}
-	// 				}
-	// 			}
-	// 			return addresslist
-	// 		},
-	// 		sortlist(){
-	// 			let sortnumlist=[];
-	// 			for(let i=65; i<= 90; i++){
-	// 				sortnumlist.push(String.fromCharCode(i))
-	// 			}
-	// 			return sortnumlist
-	// 		},
+		// 	})
+		// },
+		components:{
+			headTop,
+			footGuide
+		},
+		computed:{
+
+		// 	manageaddress(){
+		// 		let addresslist={};
+		// 		for(let i=65; i <= 90; i++){
+		// 			if(this.contactList[String.fromCharCode(i)]){
+		// 				if((this.contactList[String.fromCharCode(i)].length)>0){
+		// 					addresslist[String.fromCharCode(i)]=this.contactList[String.fromCharCode(i)];
+		// 					this.peoplenum += Number(this.contactList[String.fromCharCode(i)].length)
+		// 				}
+		// 			}
+		// 		}
+		// 		return addresslist
+		// 	},
+			sortlist(){
+				let sortnumlist=[];
+				for(let i=65; i<= 90; i++){
+					sortnumlist.push(String.fromCharCode(i))
+				}
+				return sortnumlist
+			},
 
 			
-	// 	},
-	// 	methods:{
-	// 		// ...mapMutations([
-	// 		//     'SAVE_MESSAGE'
-	// 		// ]),
-	// 		detailMessage(item){
-	// 			this.SAVE_MESSAGE(item);
-	// 		},
-	// 		getHear(value){
-	// 			this.atpresent=value;
-	// 			this.$nextTick(() =>{ //滚动到通讯录分组的地方
-	// 				const listArray = this.$refs.addlist.getElementsByClassName("addlistLi");
-	// 				for(let i =0; i<listArray.length; i++){
-	// 					if(listArray[i].getElementsByTagName("h1")[0].innerText == value){
+		// },
+		// methods:{
+		// 	// ...mapMutations([
+		// 	//     'SAVE_MESSAGE'
+		// 	// ]),
+		// 	detailMessage(item){
+		// 		this.SAVE_MESSAGE(item);
+		// 	},
+		// 	getHear(value){
+		// 		this.atpresent=value;
+		// 		this.$nextTick(() =>{ //滚动到通讯录分组的地方
+		// 			const listArray = this.$refs.addlist.getElementsByClassName("addlistLi");
+		// 			for(let i =0; i<listArray.length; i++){
+		// 				if(listArray[i].getElementsByTagName("h1")[0].innerText == value){
 
-	// 						const getBody = document.getElementsByTagName("body")[0];
+		// 					const getBody = document.getElementsByTagName("body")[0];
 
-	// 						animate(getBody,{scrollTop : listArray[i].offsetTop-50});
+		// 					animate(getBody,{scrollTop : listArray[i].offsetTop-50});
 
-	// 					}
-	// 				}
+		// 				}
+		// 			}
 					
-	// 			})
-	// 		}
-	// 	}
-	// }
+		// 		})
+		// 	}
+		}
+	}
 </script>
 <style lang="scss" scoped>
-	// @import "../../style/public";
 	.router-show-enter-active,.router-show-leave-active{
 		transition: all .4s;
 	}
@@ -195,16 +195,22 @@
 					width:100%;
 					padding:0.3413333333rem 0;
 					border-bottom:1px solid #e0e0e0;
-					// @include justify(flex-start);
+					display: flex;
+    				-webkit-box-pack: start;
+					justify-content: flex-start;
+    				-webkit-box-align: center;
 					align-items:center;
 					.contacts_img{
-						// @include widthHeight(1.5786666667rem,1.5786666667rem);
+						width: 1.57867rem;
+    					height: 1.57867rem;
 						svg{
-							// @include widthHeight(100%,100%);
+							width: 100%;
+    						height: 100%;
 						}
 					}
 					.contacts_text{
-						// @include sizeColor(0.64rem,#2a2a2a);
+						font-size: 0.64rem;
+    					color: #2a2a2a;
 						margin-left:0.5333333333rem;
 					}
 
@@ -262,20 +268,23 @@
 				right:0.2986666667rem;
 				dl{
 					dd{
-						// @include sizeColor(0.54rem,#585858);
-						text-align:center;
+						font-size: 0.54rem;
+    					color: #585858;
+    					text-align: center;
 					}
 				}
 				p{
-					// @include sizeColor(0.54rem,#585858);
+					font-size: 0.54rem;
+    				color: #585858;
 				}
 			}
 		}
 	}
 	.peoplenum{
-		padding-bottom:3rem;
-		text-align:center;
-		margin-top:.5rem;
-		// @include sizeColor(0.6rem,#666);
+		padding-bottom: 3rem;
+    	text-align: center;
+    	margin-top: .5rem;
+    	font-size: 0.6rem;
+    	color: #666;
 	}
 </style>

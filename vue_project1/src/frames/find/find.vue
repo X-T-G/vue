@@ -12,6 +12,7 @@
 <script>
 	import headTop from '../../components/header/header'
 	import footGuide from '../../components/footer/footer'
+	import findMe from '../../components/findMe/findme'
 	export default {
 		name: 'find',
 		data () {
@@ -21,6 +22,7 @@
 		},
 		components:{
 			headTop,
+			findMe,
 			footGuide
 		},
 	}

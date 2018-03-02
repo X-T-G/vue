@@ -24,7 +24,7 @@
 						</svg>
 						<div v-else>
 							<img :src="newGetImage" alt="">
-							<i class="redicon" v-if="firendwarn"></i>
+							<!-- <i class="redicon" v-if="firendwarn"></i> -->
 						</div>
 					</div>
 				</div>
@@ -124,118 +124,119 @@
 				<div class="alert_affirm" @click="affirmAlert">确认</div>
 			</div>
 		</section>
-	</section>	
+	</section>
+	
 </template>
 
 <script>
-	import {userInfo} from 'src/service/getData'
-	import {imgurl} from 'src/config/env';
-	import {mapState,mapActions,mapMutations} from 'vuex';
-	import {circle} from 'src/service/getData' 
-	export default{
-		data(){
-			return{
-				pathUrl : this.$route.path.indexOf("me") !== -1,
-				alertreminder:false,	//弹出层是否显示
-				remindershow:false,		//显示时的动画
-				reminderhide:false,		//隐藏时的动画
-				gifSrc:'',
-				timer:null,
-				newGetImage:'',			//朋友圈动态第一个头像
-				userHeader:''			//用户头像
-			}
-		},
-		props: ['mepart',],
-		created(){
+	// import {userInfo} from 'src/service/getData'
+	// import {imgurl} from 'src/config/env';
+	// import {mapState,mapActions,mapMutations} from 'vuex';
+	// import {circle} from 'src/service/getData' 
+	// export default{
+	// 	data(){
+	// 		return{
+	// 			pathUrl : this.$route.path.indexOf("me") !== -1,
+	// 			alertreminder:false,	//弹出层是否显示
+	// 			remindershow:false,		//显示时的动画
+	// 			reminderhide:false,		//隐藏时的动画
+	// 			gifSrc:'',
+	// 			timer:null,
+	// 			newGetImage:'',			//朋友圈动态第一个头像
+	// 			userHeader:''			//用户头像
+	// 		}
+	// 	},
+	// 	props: ['mepart',],
+	// 	created(){
 
-			this.gifSrc=imgurl+'reminder.gif';
-		},
-		beforeDestroy(){
-            clearTimeout(this.timer) 
-        },
-		beforeMount(){
-			this.getUserInfo();
-		},
-		mounted(){
-			this.userHeader=imgurl + this.userInfo.avatar
-			circle().then( (res) =>{
-				for(let i=0; i < res.length; i++){
-					this.newGetImage=res[0].headurl;
-					return
-				}
-			})
-		},
-		components:{
+	// 		this.gifSrc=imgurl+'reminder.gif';
+	// 	},
+	// 	beforeDestroy(){
+    //         clearTimeout(this.timer) 
+    //     },
+	// 	beforeMount(){
+	// 		this.getUserInfo();
+	// 	},
+	// 	mounted(){
+	// 		this.userHeader=imgurl + this.userInfo.avatar
+	// 		circle().then( (res) =>{
+	// 			for(let i=0; i < res.length; i++){
+	// 				this.newGetImage=res[0].headurl;
+	// 				return
+	// 			}
+	// 		})
+	// 	},
+	// 	components:{
 			
-		},
-		computed:{
-			...mapState([
-				'firendwarn', 'userInfo'
-			]),
-		},
-		methods:{
-			...mapActions([
-                'getUserInfo',
-            ]),
-			 ...mapMutations([
-				"CHANGE_RED",
-			]),
-			firendThing(){
-				if(this.$route.path.indexOf("find") !== -1){
-					this.CHANGE_RED(false);
-				}
-			},
-			showPart(){
-				this.alertreminder=true;
-				this.remindershow=true;
-				this.reminderhide=false;
-			},
-			photoAlbum(){//相册或扫一扫
-				if(this.$route.path.indexOf("find") !== -1){
-					this.showPart()
-				}else{
-					this.$router.push('/me/photoalbum')
-				}
-			},
-			collect(){//摇一摇或收藏
-				if(this.$route.path.indexOf("find") !== -1){
-					this.showPart()
-				}else{
-					this.$router.push('/me/collect')
+	// 	},
+	// 	computed:{
+	// 		// ...mapState([
+	// 		// 	'firendwarn', 'userInfo'
+	// 		// ]),
+	// 	},
+	// 	methods:{
+	// 		...mapActions([
+    //             'getUserInfo',
+    //         ]),
+	// 		 ...mapMutations([
+	// 			"CHANGE_RED",
+	// 		]),
+	// 		firendThing(){
+	// 			if(this.$route.path.indexOf("find") !== -1){
+	// 				this.CHANGE_RED(false);
+	// 			}
+	// 		},
+	// 		showPart(){
+	// 			this.alertreminder=true;
+	// 			this.remindershow=true;
+	// 			this.reminderhide=false;
+	// 		},
+	// 		photoAlbum(){//相册或扫一扫
+	// 			if(this.$route.path.indexOf("find") !== -1){
+	// 				this.showPart()
+	// 			}else{
+	// 				this.$router.push('/me/photoalbum')
+	// 			}
+	// 		},
+	// 		collect(){//摇一摇或收藏
+	// 			if(this.$route.path.indexOf("find") !== -1){
+	// 				this.showPart()
+	// 			}else{
+	// 				this.$router.push('/me/collect')
 					
-				}
-			},
-			wallet(){//附近的人或钱包
-				if(this.$route.path.indexOf("find") !== -1){
-					this.showPart()
-				}else{
-					this.$router.push('/me/wallet')
+	// 			}
+	// 		},
+	// 		wallet(){//附近的人或钱包
+	// 			if(this.$route.path.indexOf("find") !== -1){
+	// 				this.showPart()
+	// 			}else{
+	// 				this.$router.push('/me/wallet')
 					
-				}
-			},
-			shoppSth(){
-				if( this.pathUrl ){//购物或卡包
-					this.$router.push('/me/cardbag')
-				}else{
-					window.location.href="https://wqs.jd.com/portal/wx/portal_indexV4.shtml?PTAG=17007.13.1&ptype=1"
-				}
-			},
-			gamesFace(){
-				this.showPart()
-			},
-			affirmAlert(){//提醒确认
-				this.reminderhide=true;
-				this.remindershow=false;
-				this.timer=setTimeout(()=>{
-					clearTimeout(this.timer);
-					this.alertreminder=false;
-				},1000);
-			}
-		}
-	}
+	// 			}
+	// 		},
+	// 		shoppSth(){
+	// 			if( this.pathUrl ){//购物或卡包
+	// 				this.$router.push('/me/cardbag')
+	// 			}else{
+	// 				window.location.href="https://wqs.jd.com/portal/wx/portal_indexV4.shtml?PTAG=17007.13.1&ptype=1"
+	// 			}
+	// 		},
+	// 		gamesFace(){
+	// 			this.showPart()
+	// 		},
+	// 		affirmAlert(){//提醒确认
+	// 			this.reminderhide=true;
+	// 			this.remindershow=false;
+	// 			this.timer=setTimeout(()=>{
+	// 				clearTimeout(this.timer);
+	// 				this.alertreminder=false;
+	// 			},1000);
+	// 		}
+	// 	}
+	// }
+
 </script>
 <style lang="scss" scoped>
-	@import "../../style/public";
 	.find{
 		padding-top:3.06933rem;
 		padding-bottom:2.28267rem;
@@ -245,37 +246,43 @@
 			display:block;
 			margin-bottom:1rem;
 			.find_wipe{
-				@include justify;
+				// @include justify;
 				align-items:center;
 				padding-bottom:0.2533333333rem;
 				padding-top:0.2533333333rem;
 				border-bottom:1px solid #e0e0e0;
 				.findlist_left{
-					@include justify(flex-start);
+					display: flex;
+    				-webkit-box-pack: start;
+	    			justify-content: flex-start;
+    				-webkit-box-align: center;
 					align-items:center;
 					.findlist_svg{
-						@include widthHeight(1.408rem,1.408rem);
+						width: 1.408rem;
+    					height: 1.408rem;
 						svg{
-							@include widthHeight(100%,100%);
+							width: 100%;
+    						height: 100%;
 						}
 					}
 					.findlist_svg_me{
-						@include widthHeight(2.7306666667rem,2.7306666667rem);
+						// @include widthHeight(2.7306666667rem,2.7306666667rem);
 						img{
-							@include widthHeight(100%,100%);
+							// @include widthHeight(100%,100%);
 						}
 					}
 					.findlist_text{
 
-						@include sizeColor(0.64rem,#2a2a2a);
+						font-size: 0.64rem;
+						color: #2a2a2a;
 						margin-left:.6rem;
 						span{
 							display:block;
-							@include sizeColor(0.64rem,#2a2a2a);
+							// @include sizeColor(0.64rem,#2a2a2a);
 						}
 					}
 					.me_name{
-						@include sizeColor(0.64rem,#969696);
+						// @include sizeColor(0.64rem,#969696);
 						margin-left:.6rem;
 						div:nth-of-type(1){
 							color:#333;
@@ -285,14 +292,14 @@
 				}
 				.findlist_right{
 					position: relative;
-					@include widthHeight(1.6rem,1.6rem);
-					@include align;
+					// @include widthHeight(1.6rem,1.6rem);
+					// @include align;
 					div{
-						@include widthHeight(1.6rem,1.6rem);
+						// @include widthHeight(1.6rem,1.6rem);
 						overflow: hidden;
 						img{
 							display:block;
-							@include widthHeight(100%,100%);
+							// @include widthHeight(100%,100%);
 						}
 					}
 					
@@ -300,12 +307,12 @@
 						position: absolute;
 						right:-0.21rem;
 						top:-0.21rem;
-						@include widthHeight(0.4266666667rem,0.4266666667rem);
-						@include bg('../../images/warn.png');
+						// @include widthHeight(0.4266666667rem,0.4266666667rem);
+						// @include bg('../../images/warn.png');
 						border-radius:50%;
 					}
 					svg{
-						@include widthHeight(1rem,1rem);
+						// @include widthHeight(1rem,1rem);
 
 					}
 				}
@@ -317,13 +324,13 @@
 	}
 	.reminder{
 		position: fixed;
-		@include widthHeight(100%,100%);
+		// @include widthHeight(100%,100%);
 		top:0;
 		z-index:10;
 		.reminder_cover{
 			position: absolute;
 			top:0;
-			@include widthHeight(100%,100%);
+			// @include widthHeight(100%,100%);
 			background:#000;
 			opacity:.4;
 		}
@@ -339,14 +346,14 @@
 			margin-left:-6.5rem;
 			.alertimg{
 				display:block;
-				@include widthHeight(6.4rem,5.9733333333rem);
+				// @include widthHeight(6.4rem,5.9733333333rem);
 				margin:0.4266666667rem auto 1.28rem;
 			}
 			.alert_text{
 				width:100%;
 				text-align:center;
 				font-weight:700;
-				@include sizeColor(.8rem,#B6FF00);
+				// @include sizeColor(.8rem,#B6FF00);
 				-webkit-animation: neon4 0.5s ease-in-out infinite alternate;
 			  	-moz-animation: neon4 0.5s ease-in-out infinite alternate;
 			  	animation: neon4 0.5s ease-in-out infinite alternate;
@@ -359,7 +366,7 @@
 				text-align:center;
 				background:#1aad19;
 				letter-spacing:0.1066666667rem;
-				@include sizeColor(0.7253333333rem,#fff);
+				// @include sizeColor(0.7253333333rem,#fff);
 			}
 		}
 		.alertshow{

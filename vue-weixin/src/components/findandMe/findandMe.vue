@@ -130,8 +130,8 @@
 <script>
 	import {userInfo} from 'src/service/getData'
 	import {imgurl} from 'src/config/env';
-	import {mapState,mapActions,mapMutations} from 'vuex';
-	import {circle} from 'src/service/getData' 
+	// import {mapState,mapActions,mapMutations} from 'vuex';
+	// import {circle} from 'src/service/getData' 
 	export default{
 		data(){
 			return{
@@ -168,11 +168,11 @@
 		components:{
 			
 		},
-		computed:{
-			...mapState([
-				'firendwarn', 'userInfo'
-			]),
-		},
+		// computed:{
+		// 	...mapState([
+		// 		'firendwarn', 'userInfo'
+		// 	]),
+		// },
 		methods:{
 			...mapActions([
                 'getUserInfo',
