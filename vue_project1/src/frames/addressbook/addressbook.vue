@@ -1,5 +1,5 @@
 <template>
-	<section class="">
+	<section class="addressbook">
 		<head-top logo-part="true" search-part="true" add="true"></head-top>
 		<!-- 联系人列表 -->
 		<section class="contacts">

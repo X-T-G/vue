@@ -8,7 +8,7 @@ Vue.use(VueRouter)
 
 const router = new VueRouter({
 	routes,
-	mode:'history'  //路由模式
+	mode:'history',  //路由模式
 })
 /* eslint-disable no-new */
 new Vue({

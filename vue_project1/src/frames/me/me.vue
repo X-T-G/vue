@@ -1,5 +1,5 @@
 <template>
-	<section>
+	<section class="me">
 		<head-top logo-part="true" search-part="true" add="true"></head-top>
 		<find-me></find-me>
 		<foot-guide></foot-guide>
@@ -26,7 +26,6 @@
 	}
 </script>
 <style lang="scss" scoped>
-	// @import "../../style/public";
 	.router-show-enter-active,.router-show-leave-active{
 		transition: all .4s;
 	}
