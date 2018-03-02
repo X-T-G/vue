@@ -1,10 +1,18 @@
 <template>
   <div>
-	<router-view/>
+	  	<transition name="router-fade" mode="out-in">
+			<router-view/>
+		</transition>
   </div>
 </template>
 <style>
-  body, div, span, header, footer, nav, section, aside, article, ul, dl, dt, dd, li, a, p, h1, h2, h3, h4,h5, h6, i, b, textarea, button, input, select, figure, figcaption {
+	.router-fade-enter-active, .router-fade-leave-active {
+	  	transition: opacity .2s;
+	}
+	.router-fade-enter, .router-fade-leave-active {
+	  	opacity: 0;
+	}
+  	body, div, span, header, footer, nav, section, aside, article, ul, dl, dt, dd, li, a, p, h1, h2, h3, h4,h5, h6, i, b, textarea, button, input, select, figure, figcaption {
 		padding: 0;
 		margin: 0;
 		list-style: none;
