@@ -30,13 +30,13 @@
 		 	</defs>
 		 </svg>
 		<ul class="clear">
-			<router-link to="/dialogue" tag="li" class="footer_li">
+			<router-link to="/dialog" tag="li" class="footer_li">
 				<section class="li_svg">
 					<svg>
-			    		<use xmlns:xlink="http://www.w3.org/1999/xlink" :xlink:href="$route.path.indexOf('dialogue') !== -1 ? '#wxlight' : '#wx'"></use>
+			    		<use xmlns:xlink="http://www.w3.org/1999/xlink" :xlink:href="$route.path.indexOf('dialog') !== -1 ? '#wxlight' : '#wx'"></use>
 					</svg>
 				</section>
-				<section class="li_text" :class="$route.path.indexOf('dialogue') !== -1 ? 'colortext' : 'color' " >微信</section>
+				<section class="li_text" :class="$route.path.indexOf('dialog') !== -1 ? 'colortext' : 'color' " >微信</section>
 			</router-link>
 			<router-link to="/addressbook" tag="li" class="footer_li">
 				<section class="li_svg">
